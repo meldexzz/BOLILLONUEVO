@@ -87,6 +87,8 @@ export async function handler(chatUpdate) {
                     chat.isBanned = false
                 if (!('bienvenida' in chat))
                     chat.bienvenida = true 
+                if (!('modoadmin' in chat)) 
+                    chat.modoadmin = false
                 if (!('antiLink' in chat))
                     chat.antiLink = false
                 if (!('onlyLatinos' in chat))
@@ -99,6 +101,7 @@ export async function handler(chatUpdate) {
                 global.db.data.chats[m.chat] = {
                     isBanned: false,
                     bienvenida: true,
+                    modoadmin: false,
                     antiLink: false,
                     onlyLatinos: false,
                     nsfw: false, 
@@ -248,6 +251,10 @@ export async function handler(chatUpdate) {
                     if (name != 'owner-unbanbot.js' && setting?.banned)
                         return
                 }
+                let adminMode = global.db.data.chats[m.chat].modoadmin
+
+                if (adminMode && !isOwner && !isROwner && m.isGroup && !isAdmin) return
+                
                 if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { 
                     fail('owner', m, this)
                     continue
