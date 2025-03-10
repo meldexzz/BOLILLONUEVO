@@ -1,5 +1,5 @@
 {
-  "name": "Sumi-Sakurasawa",
+  "name": "BOLILLO",
   "version": "5.0.0",
   "description": "Simple WhatsApp Bot Multi Device",
   "main": "index.js",
@@ -18,16 +18,16 @@
     "eslint": "eslint .",
     "eslintfix": "eslint --fix ."
   },
-  "homepage": "https://github.com/DanielDiod/Sumi-Sakurasawa",
+  "homepage": "https://github.com/meldexzz/BOLILLONUEVO",
   "author": {
     "name": "DanielDiod"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielDiod/Sumi-Sakurasawa.git"
+    "url": "git+https://github.com/meldexzz/BOLILLONUEVO.git"
   },
   "bugs": {
-    "url": "https://github.com/DanielDiod/Sumi-Sakurasawa/issues"
+    "url": "https://github.com/meldexzz/BOLILLONUEVO/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -39,6 +39,7 @@
         "awesome-phonenumber": "^3.4.0",
         "@SumiFX/Scraper": "github:SumiFX/SumiFX-Scraper",
         "@StarlightsTeam/Scraper": "github:StarlightsTeam/StarlightsTeam-Scraper",
+        "google-libphonenumber": "3.2.38",
         "axios": "^1.1.2",
         "acrcloud": "^1.4.0",
         "form-data": "^4.0.0",
