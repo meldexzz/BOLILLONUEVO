@@ -1,94 +1,106 @@
-import { thumbnail } from '../exports.js';
-import fetch from 'node-fetch';
+import { promises } from 'fs'
+import { join } from 'path'
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn }) => {
+const defaultMenu = {
+  before: `
+*꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
+  
+“ Hola *%name*, ¿cómo estás hoy? ”
+
+╭──⬣「 *Info Usuario* 」⬣
+│  ≡◦ *🍭 Nombre ∙* %name
+│  ≡◦ *🍬 Dulces ∙* %limit
+│  ≡◦ *💫 XP ∙* %totalexp
+│  ≡◦ *🐢 Nivel ∙* %level
+╰──⬣
+%readmore
+
+*꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
+  
+*L I S T A  -  M E N Ú S*
+`.trimStart(),
+
+  header: '╭──⬣「 *%category* 」⬣',
+  body: '│  ≡◦ *%cmd*\n',
+  footer: '╰──⬣\n',
+  after: '',
+}
+
+let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
+  try {
+    let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
+    let { exp, limit, level } = global.db.data.users[m.sender]
+    let name = await conn.getName(m.sender)
+    let d = new Date(new Date + 3600000)
+    let locale = 'es'
+    let time = d.toLocaleTimeString(locale, {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    })
+    let _uptime = process.uptime() * 1000
+    let uptime = clockString(_uptime)
     
-    // Obtenemos la miniatura del bot (thumbnail)
-    let thumb = await (await fetch(thumbnail)).buffer();
+    let text = `
+${defaultMenu.before}
+╭──⬣「 *Comandos de Información* 」⬣
+│  ≡◦ *.owner* - Información del propietario
+│  ≡◦ *.ping* - Verificar el tiempo de respuesta
+│  ≡◦ *.runtime* - Ver el tiempo de actividad
+│  ≡◦ *.info* - Información sobre el bot
+╰──⬣
+
+╭──⬣「 *Comandos de Busqueda* 」⬣
+│  ≡◦ *.ytsearch* | *.yts* - Buscar videos en YouTube
+│  ≡◦ *.spotifys* - Buscar música en Spotify
+│  ≡◦ *.pinterest* - Buscar imágenes en Pinterest
+╰──⬣
+
+╭──⬣「 *Comandos de Descarga* 」⬣
+│  ≡◦ *.ytmp4* | *.ytv* - Descargar videos de YouTube
+│  ≡◦ *.ytmp3* - Descargar audio de YouTube
+│  ≡◦ *.spotifydl* - Descargar música de Spotify
+╰──⬣
+
+╭──⬣「 *Herramientas* 」⬣
+│  ≡◦ *.base64* - Convertir texto en Base64
+│  ≡◦ *.hd* - Mejorar la calidad de imágenes
+│  ≡◦ *.morse* - Convertir texto a código morse
+╰──⬣
+%readmore
+
+*꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
+`.trimStart()
     
-    // Obtenemos el nombre del usuario que ejecutó el comando
-    let name = await conn.getName(m.sender);
+    let replace = {
+      '%': '%',
+      p: _p, uptime,
+      name, exp, limit
+    }
     
-    // Aquí definimos el menú
-    let menu = `
-Hola *${name}*, ¿en qué puedo ayudarte hoy? 😀
-
-【 𝘔𝘌𝘕𝘜 𝘋𝘌 𝘊𝘖𝘔𝘈𝘕𝘋𝘖𝘚 】
-${readMore}
-
-╭─❮ *─ INFORMACIÓN ─* ❯
-├ ▢ *.owner*
-├ ⓘ _Propietario del bot_
-├ ▢ *.ping*
-├ ⓘ _Tiempo de respuesta del servidor_
-├ ▢ *.runtime*
-├ ⓘ _Tiempo encendido_
-├ ▢ *.info*
-├ ⓘ _Información sobre el bot_
-╰─❮ ❯
-
-╭─❮ *─ BUSCADORES ─* ❯
-├ ▢ *.ytsearch* | *.yts*
-├ ⓘ _Buscar videos en YouTube_
-├ ▢ *.spotifys*
-├ ⓘ _Buscar música en Spotify_
-├ ▢ *.pinterest*
-├ ⓘ _Buscar imágenes en Pinterest_
-├ ▢ *.googleimg* | *.goimg*
-├ ⓘ _Buscar imágenes en Google_
-├ ▢ *.tiktoksearch* | *.tts*
-├ ⓘ _Buscar videos en TikTok_
-╰─❮ ❯
-
-╭─❮ *─ DESCARGAS ─* ❯
-├ ▢ *.ytmp4* | *.ytv* | *.ytmp4doc*
-├ ⓘ _Descargar videos de YouTube_
-├ ▢ *.ytmp3* | *.yta* | *.ytmp3doc*
-├ ⓘ _Descargar audios de YouTube_
-├ ▢ *.spotifydl*
-├ ⓘ _Descargar música de Spotify_
-├ ▢ *.tiktok* | *.ttdl*
-├ ⓘ _Descargar videos de TikTok_
-├ ▢ *.facebook* | *.fb*
-├ ⓘ _Descargar videos de Facebook_
-├ ▢ *.instagram* | *.ig*
-├ ⓘ _Descargar videos/fotos de Instagram_
-├ ▢ *.gitclone*
-├ ⓘ _Descargar repositorios de GitHub_
-├ ▢ *.mediafire*
-├ ⓘ _Descargar archivos de Mediafire_
-╰─❮ ❯
-
-╭─❮ *─ HERRAMIENTAS ─* ❯
-├ ▢ *.base64*
-├ ⓘ _Encriptar/Desencriptar textos en base64_
-├ ▢ *.hd*
-├ ⓘ _Mejorar la calidad de imágenes a HD_
-├ ▢ *.morse*
-├ ⓘ _Encriptar/Desencriptar textos en código morse_
-├ ▢ *.toaudio*
-├ ⓘ _Convertidor de video a audio_
-├ ▢ *.upload*
-├ ⓘ _Subir imágenes y obtener enlace_
-├ ▢ *.tts*
-├ ⓘ _Convertidor de texto a voz_
-╰─❮ ❯
-
-╭─❮ *─ PROPIETARIO ─* ❯
-├ ▢ *.enable*
-├ ⓘ _Activar función_
-├ ▢ *.disable*
-├ ⓘ _Desactivar función_
-╰─❮ ❯
-    `.trim();
+    text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join('|')})`, 'g'), (_, name) => '' + replace[name])
     
-    // Enviamos el mensaje con el menú
-    await conn.sendAiri(m.chat, botname, botdesc, menu, true, thumb, null, m);
-};
+    let pp = './storage/img/miniurl.jpg'
+    await conn.sendFile(m.chat, pp, 'thumbnail.jpg', text.trim(), m)
+    
+  } catch (e) {
+    conn.reply(m.chat, 'Lo sentimos, el menú tiene un error.', m)
+    throw e
+  }
+}
 
-handler.command = ['menu', 'menú', 'help', 'comandos'];
-export default handler;
+handler.help = ['menu']
+handler.command = ['menu', 'help', 'menú']
+handler.register = true
+export default handler
 
-// Para el 'readMore' (más contenido al final del mensaje)
-const more = String.fromCharCode(8206);
-const readMore = more.repeat(4001);
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+
+function clockString(ms) {
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+}
