@@ -14,7 +14,7 @@ let img = catalogo
 	    externalAdReply: {
 				    showAdAttribution: true,
 					title: botname,
-					body: 'Hola',
+					body: '𝙈𝙀𝙇𝘿𝙀𝙓𝙕𝙕',
 					mediaUrl: null,
 					description: null,
 					previewType: "PHOTO",
