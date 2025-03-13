@@ -3,7 +3,7 @@ let users = participants.map(u => u.id).filter(v => v !== conn.user.jid)
 if (!m.quoted) return m.reply(`🍭 Responde a un mensaje.`)
 conn.sendMessage(m.chat, { forward: m.quoted.fakeObj, mentions: users } )
 }
-handler.help = ['tag']
+handler.help = ['n|notify']
 handler.tags = ['group']
 handler.command = /^(totag|tag)$/i
 handler.admin = true
