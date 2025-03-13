@@ -5,24 +5,24 @@ import fetch from 'node-fetch'
 const defaultMenu = {
   before: `
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
-  
-“ Hola *%name*, ¿cómo estás hoy? ”
 
-╭──⬣「 *Info Usuario* 」⬣
-│  ≡◦ *🍭 Nombre ∙* %name
-│  ≡◦ *🍬 Dulces ∙* %limit
-│  ≡◦ *💫 XP ∙* %totalexp
-│  ≡◦ *🐢 Nivel ∙* %level
+¡Hola *%name*! ¿Cómo estás el día de hoy? 😊
+
+╭──⬣「 *Información del Usuario* 」⬣
+│  ≡◦ *🍭 Nombre:* %name
+│  ≡◦ *🍬 Dulces:* %limit
+│  ≡◦ *💫 XP:* %totalexp
+│  ≡◦ *🐢 Nivel:* %level
 ╰──⬣
 %readmore
 
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
-  
+
 *L I S T A  -  M E N Ú S*
 `.trimStart(),
 
   header: '╭──⬣「 *%category* 」⬣',
-  body: '│  ≡◦ *%cmd*\n',
+  body: '│  ➤ *%cmd*\n',
   footer: '╰──⬣\n',
   after: '',
 }
@@ -46,40 +46,40 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 ${defaultMenu.before}
 ╭─❮ *─ INFORMACIÓN ─* ❯
 ├ 🔱 *.owner* 
-├ ⓘ _Propietario del bot_
+├ _Propietario del bot_
 ├ 🔱 *.ping* 
-├ ⓘ _Tiempo de respuesta del servidor_
+├ _Tiempo de respuesta del servidor_
 ├ 🔱 *.runtime* 
-├ ⓘ _Tiempo encendido_
+├ _Tiempo encendido_
 ├ 🔱 *.info* 
-├ ⓘ _Información sobre el bot_
+├ _Información sobre el bot_
 ╰─❮ ❯
 
 ╭─❮ *─ BUSCADORES ─* ❯
 ├ 🔱 *.ytsearch* | *.yts* 
-├ ⓘ _Buscar videos en YouTube_
+├ _Buscar videos en YouTube_
 ├ 🔱 *.spotifys* 
-├ ⓘ _Buscar música en Spotify_
+├ _Buscar música en Spotify_
 ├ 🔱 *.pinterest* 
-├ ⓘ _Buscar imágenes en Pinterest_
+├ _Buscar imágenes en Pinterest_
 ╰─❮ ❯
 
 ╭─❮ *─ DESCARGAS ─* ❯
 ├ 🔱 *.ytmp4* | *.ytv* 
-├ ⓘ _Descargar videos de YouTube_
+├ _Descargar videos de YouTube_
 ├ 🔱 *.ytmp3* 
-├ ⓘ _Descargar audios de YouTube_
+├ _Descargar audios de YouTube_
 ├ 🔱 *.spotifydl* 
-├ ⓘ _Descargar música de Spotify_
+├ _Descargar música de Spotify_
 ╰─❮ ❯
 
 ╭─❮ *─ HERRAMIENTAS ─* ❯
 ├ 🔱 *.base64* 
-├ ⓘ _Convertir texto en Base64_
+├ _Convertir texto en Base64_
 ├ 🔱 *.hd* 
-├ ⓘ _Mejorar la calidad de imágenes_
+├ _Mejorar la calidad de imágenes_
 ├ 🔱 *.morse* 
-├ ⓘ _Convertir texto a código morse_
+├ _Convertir texto a código morse_
 ╰─❮ ❯
 
 %readmore
