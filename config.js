@@ -10,11 +10,8 @@ import moment from 'moment-timezone'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
-  ['51923300039', 'Danịel 🇦🇱⁩', true],
-  ['5491122461521'],
-  ['524434703586'],
-  ['51955918117'],
-  ['5491122461521']
+  ['529985011412', 'Mesito⁩', true],
+  ['525649707515']
 ]
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -25,12 +22,12 @@ global.prems = []
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = ``
-global.author = '{\n "bot": {\n   "name": "Sumi - Sakurasawa",\n     "author": "Danịel",\n   "status_bot": "active"\n }\n}'
-global.wait = '🐢 *Sumi Sakurasawa*'
-global.botname = 'Sumi - Sakurasawa'
-global.textbot = `Powered By Starlights Team`
-global.listo = '*🍭 Aqui tiene*'
-global.namechannel = '【 ✯ Starlights Team - Oficial Chanel ✰ 】'
+global.author = '{\n "𝘽𝙊𝙏": {\n   "name": "𝘽𝙊𝙏 | 𝙈𝙀𝙎𝙄𝙏𝙊 🦥",\n     "author": "Mesito / Meldexzz",\n   "status_bot": "active"\n }\n}'
+global.wait = '🐢 𝘽𝙊𝙏 | 𝙈𝙀𝙎𝙄𝙏𝙊 🦥'
+global.botname = '𝘽𝙊𝙏 | 𝙈𝙀𝙎𝙄𝙏𝙊 🦥'
+global.textbot = `Power By Bolillo-Team`
+global.listo = '*🦥 Aqui tiene*'
+global.namechannel = '𝘽𝙊𝙏 | 𝙈𝙀𝙎𝙄𝙏𝙊 🦥'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -39,8 +36,8 @@ global.miniurl = fs.readFileSync('./storage/img/miniurl.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.group = 'https://chat.whatsapp.com/J1R402WH1N0Hdl3S0NDEYu'
-global.canal = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.group = 'https://chat.whatsapp.com/Bb7t3aHQJht3FVMwh6TdGc'
+global.canal = 'https://whatsapp.com/channel/0029Vb9OksWAu3aTA01cva0d'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
