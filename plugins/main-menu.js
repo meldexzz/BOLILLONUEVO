@@ -44,32 +44,45 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     
     let text = `
 ${defaultMenu.before}
-╭──⬣「 *Comandos de Información* 」⬣
-│  ≡◦ *.owner* - Información del propietario
-│  ≡◦ *.ping* - Verificar el tiempo de respuesta
-│  ≡◦ *.runtime* - Ver el tiempo de actividad
-│  ≡◦ *.info* - Información sobre el bot
-╰──⬣
+╭─❮ ${em} *─ INFORMACIÓN ─* ${em} ❯
+├ 🔱 *.owner* 
+├ ⓘ _Propietario del bot_
+├ 🔱 *.ping* 
+├ ⓘ _Tiempo de respuesta del servidor_
+├ 🔱 *.runtime* 
+├ ⓘ _Tiempo encendido_
+├ 🔱 *.info* 
+├ ⓘ _Información sobre el bot_
+╰─❮ ${em} ❯
 
-╭──⬣「 *Comandos de Busqueda* 」⬣
-│  ≡◦ *.ytsearch* | *.yts* - Buscar videos en YouTube
-│  ≡◦ *.spotifys* - Buscar música en Spotify
-│  ≡◦ *.pinterest* - Buscar imágenes en Pinterest
-╰──⬣
+╭─❮ ${em} *─ BUSCADORES ─* ${em} ❯
+├ 🔱 *.ytsearch* | *.yts* 
+├ ⓘ _Buscar videos en YouTube_
+├ 🔱 *.spotifys* 
+├ ⓘ _Buscar música en Spotify_
+├ 🔱 *.pinterest* 
+├ ⓘ _Buscar imágenes en Pinterest_
+╰─❮ ${em} ❯
 
-╭──⬣「 *Comandos de Descarga* 」⬣
-│  ≡◦ *.ytmp4* | *.ytv* - Descargar videos de YouTube
-│  ≡◦ *.ytmp3* - Descargar audio de YouTube
-│  ≡◦ *.spotifydl* - Descargar música de Spotify
-╰──⬣
+╭─❮ ${em} *─ DESCARGAS ─* ${em} ❯
+├ 🔱 *.ytmp4* | *.ytv* 
+├ ⓘ _Descargar videos de YouTube_
+├ 🔱 *.ytmp3* 
+├ ⓘ _Descargar audios de YouTube_
+├ 🔱 *.spotifydl* 
+├ ⓘ _Descargar música de Spotify_
+╰─❮ ${em} ❯
 
-╭──⬣「 *Herramientas* 」⬣
-│  ≡◦ *.base64* - Convertir texto en Base64
-│  ≡◦ *.hd* - Mejorar la calidad de imágenes
-│  ≡◦ *.morse* - Convertir texto a código morse
-╰──⬣
+╭─❮ ${em} *─ HERRAMIENTAS ─* ${em} ❯
+├ 🔱 *.base64* 
+├ ⓘ _Convertir texto en Base64_
+├ 🔱 *.hd* 
+├ ⓘ _Mejorar la calidad de imágenes_
+├ 🔱 *.morse* 
+├ ⓘ _Convertir texto a código morse_
+╰─❮ ${em} ❯
+
 %readmore
-
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
 `.trimStart()
     
