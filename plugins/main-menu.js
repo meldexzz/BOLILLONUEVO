@@ -44,7 +44,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     
     let text = `
 ${defaultMenu.before}
-╭─❮ ${em} *─ INFORMACIÓN ─* ${em} ❯
+╭─❮ *─ INFORMACIÓN ─* ❯
 ├ 🔱 *.owner* 
 ├ ⓘ _Propietario del bot_
 ├ 🔱 *.ping* 
@@ -53,34 +53,34 @@ ${defaultMenu.before}
 ├ ⓘ _Tiempo encendido_
 ├ 🔱 *.info* 
 ├ ⓘ _Información sobre el bot_
-╰─❮ ${em} ❯
+╰─❮ ❯
 
-╭─❮ ${em} *─ BUSCADORES ─* ${em} ❯
+╭─❮ *─ BUSCADORES ─* ❯
 ├ 🔱 *.ytsearch* | *.yts* 
 ├ ⓘ _Buscar videos en YouTube_
 ├ 🔱 *.spotifys* 
 ├ ⓘ _Buscar música en Spotify_
 ├ 🔱 *.pinterest* 
 ├ ⓘ _Buscar imágenes en Pinterest_
-╰─❮ ${em} ❯
+╰─❮ ❯
 
-╭─❮ ${em} *─ DESCARGAS ─* ${em} ❯
+╭─❮ *─ DESCARGAS ─* ❯
 ├ 🔱 *.ytmp4* | *.ytv* 
 ├ ⓘ _Descargar videos de YouTube_
 ├ 🔱 *.ytmp3* 
 ├ ⓘ _Descargar audios de YouTube_
 ├ 🔱 *.spotifydl* 
 ├ ⓘ _Descargar música de Spotify_
-╰─❮ ${em} ❯
+╰─❮ ❯
 
-╭─❮ ${em} *─ HERRAMIENTAS ─* ${em} ❯
+╭─❮ *─ HERRAMIENTAS ─* ❯
 ├ 🔱 *.base64* 
 ├ ⓘ _Convertir texto en Base64_
 ├ 🔱 *.hd* 
 ├ ⓘ _Mejorar la calidad de imágenes_
 ├ 🔱 *.morse* 
 ├ ⓘ _Convertir texto a código morse_
-╰─❮ ${em} ❯
+╰─❮ ❯
 
 %readmore
 *꒷꒦꒷꒷꒦꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒷꒦꒷꒷꒦꒷꒷꒦꒷꒦꒷꒦꒷꒦꒷*
