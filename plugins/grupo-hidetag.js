@@ -2,7 +2,7 @@ import { generateWAMessageFromContent } from '@whiskeysockets/baileys'
 import * as fs from 'fs'
 
 var handler = async (m, { conn, text, participants }) => {
-    if (!m.quoted && !text?.trim()) return m.reply(`¿𝙔 𝙀𝙇 𝙏𝙀𝙓𝙏𝙊? 🥖`) 
+    if (!m.quoted && !text?.trim()) return m.reply(`¿𝙔 𝙀𝙇 𝙏𝙀𝙓𝙏𝙊? `) 
 
     try { 
         let users = participants.map(u => conn.decodeJid(u.id))
