@@ -1,26 +1,55 @@
-import { WAMessageStubType } from '@whiskeysockets/baileys'
-import fetch from 'node-fetch'
+import { WAMessageStubType } from '@whiskeysockets/baileys';
+import fetch from 'node-fetch';
+
+// Función para obtener el nombre del usuario
+async function getUserName(conn, jid) {
+  let name = await conn.getName(jid);
+  if (!name) {
+    const contact = await conn.fetchContact(jid);
+    name = contact?.notify || contact?.name || jid.split('@')[0];
+  }
+  return name;
+}
 
 export async function before(m, { conn, participants, groupMetadata }) {
   if (!m.messageStubType || !m.isGroup) return !0;
 
-  let who = m.messageStubParameters[0]
-  let taguser = `@${who.split('@')[0]}`
-  let chat = global.db.data.chats[m.chat]
-  let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg')
-  let img = await (await fetch(`${pp}`)).buffer()
+  let top = `*╭─${em}─── ⫍📢⫎ ───${em}─╮*\n`;
+  let bottom = `\n*╰─${em}─── ⫍📢⫎ ───${em}─╯*`;
+  let chat = global.db.data.chats[m.chat];
 
-    if (chat.welcome && m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-      let bienvenida = `❀ *Bienvenido* a ${groupMetadata.subject}\n  ${taguser}\n${global.welcom1}\n 𝘿𝙞𝙨𝙛𝙧𝙪𝙩𝙖 𝙩𝙪 𝙚𝙨𝙩𝙖𝙙í𝙖 𝙚𝙣 𝙚𝙡 𝙜𝙧𝙪𝙥𝙤!\n> 𝙋𝙪𝙚𝙙𝙚𝙨 𝙪𝙨𝙖𝙧 *#𝙝𝙚𝙡𝙥* 𝙥𝙖𝙧𝙖 𝙫𝙚𝙧 𝙡𝙖 𝙡𝙞𝙨𝙩𝙖 𝙙𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤𝙨.🌱`
-      await conn.sendMessage(m.chat, { image: img, caption: bienvenida, mentions: [who] })
-    }
-       
-    if (chat.welcome && m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE) {
-      let bye = `❀ *Adiós* de ${groupMetadata.subject}\n ✰ ${taguser}\n${global.welcom2}\n 𝙏𝙚 𝙚𝙨𝙥𝙚𝙧𝙖𝙢𝙤𝙨 𝙥𝙧𝙤𝙣𝙩𝙤!\n> 𝙋𝙪𝙚𝙙𝙚𝙨 𝙪𝙨𝙖𝙧 *#𝙝𝙚𝙡𝙥* 𝙥𝙖𝙧𝙖 𝙫𝙚𝙧 𝙡𝙖 𝙡𝙞𝙨𝙩𝙖 𝙙𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤𝙨.🌱`
-      await conn.sendMessage(m.chat, { image: img, caption: bye, mentions: [who] })
-    }
+  // Obtener foto de perfil
+  let pp = await conn
+    .profilePictureUrl(m.messageStubParameters[0], 'image')
+    .catch(() => 'https://files.catbox.moe/f2lebz.jpg');
+  let thumb = await (await fetch(pp)).buffer();
 
-    if (chat.welcome && m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE) { 
-      let kick = `❀ *Adiós* de ${groupMetadata.subject}\n ✰ ${taguser}\n${global.welcom2}\n 𝙏𝙚 𝙚𝙨𝙥𝙚𝙧𝙖𝙢𝙤𝙨 𝙥𝙧𝙤𝙣𝙩𝙤!\n> 𝙋𝙪𝙚𝙙𝙚𝙨 𝙪𝙨𝙖𝙧 *#𝙝𝙚𝙡𝙥* 𝙥𝙖𝙧𝙖 𝙫𝙚𝙧 𝙡𝙖 𝙡𝙞𝙨𝙩𝙖 𝙙𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤𝙨.🌱`
-      await conn.sendMessage(m.chat, { image: img, caption: kick, mentions: [who] })
-  }}
+  // Obtener nombre del usuario
+  const userJid = m.messageStubParameters[0];
+  const userName = await getUserName(conn, userJid);
+
+  if (chat.bienvenida && m.messageStubType == 27) {
+    let welcome = chat.sWelcome
+      ? chat.sWelcome.replace('@user', userName)
+      : `${top}_🙂 Hola *${userName}* Bienvenid@ al grupo *${groupMetadata.subject}*_${bottom}`;
+
+    await conn.sendAiri(m.chat, botname, botdesc, welcome, false, thumb, null, null);
+  }
+
+  if (chat.bienvenida && m.messageStubType == 32) {
+    let bye = chat.sBye
+      ? chat.sBye.replace('@user', userName)
+      : `${top}_👋 *${userName}* Ha abandonado el grupo_${bottom}`;
+
+    await conn.sendAiri(m.chat, botname, botdesc, bye, false, thumb, null, null);
+  }
+
+  if (chat.bienvenida && m.messageStubType == 28) {
+    let kick = chat.sBye
+      ? chat.sBye.replace('@user', userName)
+      : `${top}_☠️ *${userName}* Fue expulsad@ del grupo_${bottom}`;
+
+    await conn.sendAiri(m.chat, botname, botdesc, kick, false, thumb, null, null);
+  }
+} 
+		       
