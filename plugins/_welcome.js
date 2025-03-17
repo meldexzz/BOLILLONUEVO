@@ -28,28 +28,53 @@ export async function before(m, { conn, participants, groupMetadata }) {
   const userJid = m.messageStubParameters[0];
   const userName = await getUserName(conn, userJid);
 
-  if (chat.bienvenida && m.messageStubType == 27) {
+  // Verificar tipo de evento y responder
+  if (chat.bienvenida && m.messageStubType == WAMessageStubType.NEW_PARTICIPANT) {
+    // Mensaje de bienvenida
     let welcome = chat.sWelcome
       ? chat.sWelcome.replace('@user', userName)
       : `${top}_🙂 Hola *${userName}* Bienvenid@ al grupo *${groupMetadata.subject}*_${bottom}`;
 
-    await conn.sendAiri(m.chat, botname, botdesc, welcome, false, thumb, null, null);
+    // Enviar mensaje con foto de perfil
+    await conn.sendMessage(m.chat, {
+      text: welcome,
+      mentions: [userJid],
+      contextInfo: {
+        mentionedJid: [userJid],
+      },
+      thumbnail: thumb,
+    });
   }
 
-  if (chat.bienvenida && m.messageStubType == 32) {
+  if (chat.bienvenida && m.messageStubType == WAMessageStubType.LEFT_PARTICIPANT) {
+    // Mensaje de despedida
     let bye = chat.sBye
       ? chat.sBye.replace('@user', userName)
       : `${top}_👋 *${userName}* Ha abandonado el grupo_${bottom}`;
 
-    await conn.sendAiri(m.chat, botname, botdesc, bye, false, thumb, null, null);
+    await conn.sendMessage(m.chat, {
+      text: bye,
+      mentions: [userJid],
+      contextInfo: {
+        mentionedJid: [userJid],
+      },
+      thumbnail: thumb,
+    });
   }
 
-  if (chat.bienvenida && m.messageStubType == 28) {
+  if (chat.bienvenida && m.messageStubType == WAMessageStubType.KICKOUT_PARTICIPANT) {
+    // Mensaje de expulsión
     let kick = chat.sBye
       ? chat.sBye.replace('@user', userName)
       : `${top}_☠️ *${userName}* Fue expulsad@ del grupo_${bottom}`;
 
-    await conn.sendAiri(m.chat, botname, botdesc, kick, false, thumb, null, null);
+    await conn.sendMessage(m.chat, {
+      text: kick,
+      mentions: [userJid],
+      contextInfo: {
+        mentionedJid: [userJid],
+      },
+      thumbnail: thumb,
+    });
   }
-} 
-		       
+}
