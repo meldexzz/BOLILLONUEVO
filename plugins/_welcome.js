@@ -14,9 +14,7 @@ async function getUserName(conn, jid) {
 export async function before(m, { conn, participants, groupMetadata }) {
   if (!m.messageStubType || !m.isGroup) return !0;
 
-  let top = `*╭─${em}─── ⫍📢⫎ ───${em}─╮*\n`;
-  let bottom = `\n*╰─${em}─── ⫍📢⫎ ───${em}─╯*`;
-  let chat = global.db.data.chats[m.chat];
+  
 
   // Obtener foto de perfil
   let pp = await conn
@@ -33,7 +31,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
     // Mensaje de bienvenida
     let welcome = chat.sWelcome
       ? chat.sWelcome.replace('@user', userName)
-      : `${top}_🙂 Hola *${userName}* Bienvenid@ al grupo *${groupMetadata.subject}*_${bottom}`;
+      : `_🙂 Hola *${userName}* Bienvenid@ al grupo *${groupMetadata.subject}*_`;
 
     // Enviar mensaje con foto de perfil
     await conn.sendMessage(m.chat, {
@@ -50,7 +48,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
     // Mensaje de despedida
     let bye = chat.sBye
       ? chat.sBye.replace('@user', userName)
-      : `${top}_👋 *${userName}* Ha abandonado el grupo_${bottom}`;
+      : `_👋 *${userName}* Ha abandonado el grupo_`;
 
     await conn.sendMessage(m.chat, {
       text: bye,
@@ -66,7 +64,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
     // Mensaje de expulsión
     let kick = chat.sBye
       ? chat.sBye.replace('@user', userName)
-      : `${top}_☠️ *${userName}* Fue expulsad@ del grupo_${bottom}`;
+      : `_☠️ *${userName}* Fue expulsad@ del grupo_`;
 
     await conn.sendMessage(m.chat, {
       text: kick,
