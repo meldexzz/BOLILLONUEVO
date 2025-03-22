@@ -78,7 +78,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 `.trim())
       throw false
   }
-  m.reply(`🍭 La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este bot' : isUser ? '' : 'para este chat'}`)
+  m.reply(`🦥 La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este bot' : isUser ? '' : 'para este chat'}`)
 }
 
 handler.help = ['enable', 'disable']
